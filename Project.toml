@@ -3,8 +3,13 @@ uuid = "24a713b4-7d5a-4899-ba30-fd153dee0342"
 authors = ["Gen Kuroki <genkuroki@gmail.com> and contributors"]
 version = "0.1.0"
 
+[deps]
+TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
+Unicode = "4ec0a83e-493e-50e2-b9ac-8f72acf5a8f5"
+
 [compat]
 julia = "1"
+TOML = "1"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
