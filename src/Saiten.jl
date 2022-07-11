@@ -39,7 +39,7 @@ gijikaito(x::Integer) = 4649373
 gijikaito(x::AbstractString) = "yes or no"
 gijikaito(x::Vector) = [gijikaito(x) for x in x]
 
-make_kaitoyoshi(sol::Vector; gijikaitofunc=gijikaito) = gijikaitofunc(sol[1])
+make_kaitoyoshi(sol; gijikaitofunc=gijikaito) = gijikaitofunc(sol[1])
 
 function make_kaitoyoshi(sol::Dict; gijikaitofunc=gijikaito)
     kaitoyoshi = Dict()
