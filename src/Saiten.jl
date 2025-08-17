@@ -6,6 +6,7 @@ using TOML
 using Unicode
 
 relerr(x, y) = Inf
+relerr(x::Integer, y::Integer) = x - y
 relerr(x::Real, y::Real) = abs(x/y - 1)
 relerr(x::Vector, y::Vector) = maximum(relerr(x[i], y[i]) for i in eachindex(y))
 relerr(x::AbstractString, y::AbstractString) =
