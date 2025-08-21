@@ -15,6 +15,10 @@ b = [1003, 10]
 [3]
 c = [[123.4, 234.5], 20]
 d = ["No", 10]
+
+[4]
+p = [1, 10]
+q = [0, 10]
 """
 sol = TOML.parse(sol_str)
 
@@ -32,6 +36,10 @@ b = 1003
 [3]
 c = [123.4, 234.5]
 d = "No"
+
+[4]
+p = 1
+q = 0
 """
 
 kaitoyoshi = """
@@ -48,6 +56,10 @@ b = 4649373
 [3]
 c = [46.49373, 46.49373]
 d = "yes or no"
+
+[4]
+p = 4649373
+q = 4649373
 """
 
 ans1_str = """
@@ -68,6 +80,10 @@ b = 1003
 [3]
 c = [123.4, 234.5]
 d = "No"
+
+[4]
+p = 1
+q = 0
 """
 ans1 = TOML.parse(ans1_str)
 kekka1, saitenkekka1 = saiten(TOML.parse(ans1_str), sol)
@@ -85,6 +101,10 @@ y = "Yes"
 [3]
 c = [124.4, 234.5]
 d = "no"
+
+[4]
+p = 0
+q = 1
 """
 ans2 = TOML.parse(ans2_str)
 kekka2, saitenkekka2 = saiten(TOML.parse(ans2_str), sol)
@@ -92,8 +112,9 @@ kekka2, saitenkekka2 = saiten(TOML.parse(ans2_str), sol)
 @testset "Saiten.jl" begin
     @test sprint((io, x) -> TOML.print(io, x; sorted=true), make_mohankaito(sol)) == mohankaito
     @test sprint((io, x) -> TOML.print(io, x; sorted=true), make_kaitoyoshi(sol)) == kaitoyoshi
-    @test saitenkekka1 == 100
-    @test kekka1 == Dict("1" => Dict("w" => [999, 10],
+    @test saitenkekka1 == 120
+    @test kekka1 == Dict("4" => Dict("q" => [0, 10], "p" => [1, 10]),
+     "1" => Dict("w" => [999, 10],
                  "x" => [123.4, 10],
                  "z" => [[34.5, 199.5], 20],
                  "y" => ["yes", 10]),
@@ -101,7 +122,8 @@ kekka2, saitenkekka2 = saiten(TOML.parse(ans2_str), sol)
      "2" => Dict("b" => [1003, 10], "a" => [678, 10]),
      "3" => Dict("c" => [[123.4, 234.5], 20], "d" => ["No", 10]))
     @test saitenkekka2 ==  30
-    @test kekka2 == Dict("1" => Dict("w" => [990, 0],
+    @test kekka2 == Dict("4" => Dict("q" => [1, 0], "p" => [0, 0]),
+     "1" => Dict("w" => [990, 0],
                  "x" => [123.4, 10],
                  "z" => ["", 0],
                  "y" => ["Yes", 10]),
